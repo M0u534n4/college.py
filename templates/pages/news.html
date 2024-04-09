@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<!-- only admin should see this -->
+<section class="admin-poster">
+  <div class="container">
+    <div class="poster-div">
+      <form action="" method="POST">
+        <textarea
+          id="post"
+          name="post"
+          placeholder="ტექსტი"
+          rows="10"
+          cols="50"
+        ></textarea>
+
+        <button><i class="img-btn fa-solid fa-images"></i></button>
+        <button class="post-btn">პოსტი</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- admin poster end -->
+
+<!-- posts section start -->
+<section class="posts-section">
+  <div class="container">
+    <div class="post-div">
+      <div class="discr-div">
+        <p>ეს არის ჩემი პირველი პოსტი</p>
+      </div>
+      <div class="post-img-div">
+        <img src="../../static/images/1st.avif" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

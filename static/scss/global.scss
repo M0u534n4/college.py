@@ -1,0 +1,17 @@
+@import "style/reset";
+@import "style/virables";
+body {
+  font-family: $base-font;
+  overflow-x: hidden;
+}
+
+@import "style/header";
+@import "style/banner";
+@import "style/about";
+@import "style/programs";
+@import "style/news";
+@import "style/contact";
+@import "style/footer";
+@import "style/pages-styles/news-page";
+@import "style/pages-styles/news-posts";
+@import "style/pages-styles/programs\ style";

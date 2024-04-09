@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<section class="news" id="news">
+  <div class="container">
+    <div class="post-div">
+      <div class="post-img-div">
+        <img src="../static/{{ products[ 'img' ] }}" alt="" />
+      </div>
+
+      <div class="discr-div">
+        <p class="date">{{ products["price"] }}</p>
+        <p>{{ products["title"] }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

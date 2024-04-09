@@ -1,0 +1,267 @@
+{% extends "base.html" %} {% block content %}
+<section class="banner" id="banner">
+  <div class="container"></div>
+</section>
+<!--banner section-->
+<!--<section class="banner" id="banner">
+      <div class="container">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="images/1st.avif" class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/2nd.avif" class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>
+                  Some representative placeholder content for the second slide.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/3rd.jpg" class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>
+                  Some representative placeholder content for the third slide.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>-->
+
+<section class="news" id="news">
+  <div class="container">
+    {% for product in products %}
+    <div class="post-div">
+      <div class="post-img-div">
+        <img
+          src="/static/{{ product[ 'img' ] }}"
+          alt=""
+          style="width: 354px; height: 264px"
+        />
+      </div>
+
+      <div class="discr-div">
+        <p class="date">{{ product["price"] }}</p>
+        <p>
+          {{ product["title"] }}<a href="test/{{ product['id'] }}">..მეტი</a>
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<!-- only admin should see this -->
+
+{% if role == "admin" %}
+<section class="admin-poster">
+  <div class="container">
+    <div class="poster-div">
+      <form action="" method="POST">
+        <textarea
+          id="post"
+          name="post"
+          placeholder="ტექსტი"
+          rows="10"
+          cols="50"
+        ></textarea>
+
+        <button><i class="img-btn fa-solid fa-images"></i></button>
+        <button class="post-btn">პოსტი</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- admin poster end -->
+
+<section class="programs" id="programs">
+  <div class="container">
+    <h1>პროგრამები</h1>
+    <div class="card-wrapper">
+      <div class="card" style="max-width: 355px">
+        <img src="../static/images/it.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">მესამე დონე</p>
+            <h5 class="card-title">ინფორმაციული ტექნოლოგია</h5>
+          </div>
+          <a href="pages/programs/it.html" class="btn btn-primary">მეტი</a>
+        </div>
+      </div>
+      <div class="card" style="max-width: 355px">
+        <img
+          src="../static/images/farmacy.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">მეხუთე დონე</p>
+            <h5 class="card-title">ფამაცია</h5>
+          </div>
+          <a href="#" class="btn btn-primary">მეტი</a>
+        </div>
+      </div>
+      <div class="card" style="max-width: 355px">
+        <img
+          src="../static/images/veterinary.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">მეხუთე დონე</p>
+            <h5 class="card-title">ვეტერინარია</h5>
+          </div>
+          <a href="#" class="btn btn-primary">მეტი</a>
+        </div>
+      </div>
+      <div class="card" style="max-width: 355px">
+        <img
+          src="../static/images/office business.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">მეოთხე დონე</p>
+            <h5 class="card-title">საოფისე საქმე</h5>
+          </div>
+          <a href="#" class="btn btn-primary">მეტი</a>
+        </div>
+      </div>
+      <div class="card" style="max-width: 355px">
+        <img
+          src="../static/images/kindergarden.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">მეხუთე დონე</p>
+            <h5 class="card-title">აღმზრდელი</h5>
+          </div>
+          <a href="#" class="btn btn-primary">მეტი</a>
+        </div>
+      </div>
+      <div class="card" style="max-width: 355px">
+        <img src="static/images/bugalteri.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">მეხუთე დონე</p>
+            <h5 class="card-title">ბუღალტერია</h5>
+          </div>
+          <a href="#" class="btn btn-primary">მეტი</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h1>კონტაქტი</h1>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2791.78997548554!2d144.9805125252687!3d-37.84132841005892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6681f3e9cb7e1%3A0x9d52778f56cab5a8!2sFawkner%20Park!5e1!3m2!1sen!2sth!4v1648201596364!5m2!1sen!2sth"
+            width="100%"
+            height="450px"
+            frameborder="0"
+            allowfullscreen=""
+          ></iframe>
+        </div>
+      </div>
+      <div class="card-curd">
+        <div class="card-wrapper">
+          <div class="cnt-card">
+            <a class="cnt-a" href="mailto:iliasagarejo@gmail.com"
+              ><div class="info-item">
+                <i class="fa fa-envelope"></i>
+                <h4>ელ.ფოსტა</h4>
+                <p>iliasagarejo@gmail.com</p>
+              </div></a
+            >
+          </div>
+          <div class="cnt-card">
+            <a class="cnt-a" href="tel:598 80 80 73">
+              <div class="info-item">
+                <i class="fa fa-phone"></i>
+                <h4>ტელეფონი</h4>
+                <p>598 80 80 73</p>
+              </div>
+            </a>
+          </div>
+          <div class="cnt-card">
+            <a
+              class="cnt-a"
+              href="https://www.google.com/maps/place/%E1%83%A1%E1%83%90%E1%83%92%E1%83%90%E1%83%A0%E1%83%94%E1%83%AF%E1%83%9D%E1%83%A1+%E1%83%A1%E1%83%90%E1%83%96%E1%83%9D%E1%83%92%E1%83%90%E1%83%93%E1%83%9D%E1%83%94%E1%83%91%E1%83%A0%E1%83%98%E1%83%95%E1%83%98+%E1%83%99%E1%83%9D%E1%83%9A%E1%83%94%E1%83%AF%E1%83%98/@41.7362356,45.3110192,17z/data=!4m7!3m6!1s0x40442391a58ebe6d:0x758fea8e9c13e086!4b1!8m2!3d41.7362356!4d45.3135941!16s%2Fg%2F11jk2n4wbp?entry=ttu"
+              ><div class="info-item">
+                <i class="fa fa-map-marked-alt"></i>
+                <h4>მისამართი</h4>
+                <p>ქ.საგარეჯო, გ.ლეონიძის 33ა</p>
+              </div></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

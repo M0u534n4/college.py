@@ -1,0 +1,28 @@
+.programs-s {
+  padding-top: 60px;
+  padding-bottom: 3000px;
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+    h5 {
+      text-align: center;
+      font-size: 30px;
+      color: $card-txt;
+      font-weight: 600;
+    }
+    .info-div {
+      border-radius: 25px;
+      padding: 30px;
+      background-color: $card-color;
+      p {
+        color: $card-txt;
+        font-size: 15px;
+        line-height: 25px;
+      }
+    }
+  }
+}
