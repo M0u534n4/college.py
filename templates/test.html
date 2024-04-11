@@ -4,12 +4,11 @@
     {% for product in products %}
     <div class="post-div">
       <div class="post-img-div">
-        <img src="../static/{{ product['img'] }}" alt="" />
+        <img src="/static/{{ product['img'] }}" alt="" />
       </div>
 
       <div class="discr-div">
         <p>{{ product["title"] }}</p>
-        <!-- Add date here if you want -->
       </div>
     </div>
     {% endfor %}

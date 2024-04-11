@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from forms import AddProductForm
+from os import path
 from datetime import datetime
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "gu[xi=71uW_Y3:?uiH}^d1R.l<UQnV.o8^0w}o7V9a4rQ#I!"
@@ -36,8 +37,12 @@ def add_product():
             "img": form.img.data.filename,
             "id": len(products)
         }
-        form.img.data.save(f"{app.root_path}\\static\\{form.img.data.filename}")
+        file_dir = path.join(app.root_path, "static", form.img.data.filename)
+        form.img.data.save(file_dir)
         products.append(new_product)
+        
+        return redirect("/")
+    print(form.errors)
     return render_template("pages/add_product.html", form=form)
 
 
