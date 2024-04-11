@@ -1,16 +1,18 @@
 {% extends "base.html" %} {% block content %}
 <section class="news" id="news">
   <div class="container">
+    {% for product in products %}
     <div class="post-div">
       <div class="post-img-div">
-        <img src="../static/{{ products[ 'img' ] }}" alt="" />
+        <img src="../static/{{ product['img'] }}" alt="" />
       </div>
 
       <div class="discr-div">
-        <p class="date">{{ products["price"] }}</p>
-        <p>{{ products["title"] }}</p>
+        <p>{{ product["title"] }}</p>
+        <!-- Add date here if you want -->
       </div>
     </div>
+    {% endfor %}
   </div>
 </section>
 {% endblock %}

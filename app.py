@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from forms import AddProductForm
+from datetime import datetime
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "gu[xi=71uW_Y3:?uiH}^d1R.l<UQnV.o8^0w}o7V9a4rQ#I!"
 
@@ -12,11 +13,14 @@ products = [
 @app.route("/")
 def home():
     print(f"{app.root_path}\\static\\images")
+    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    last_three_items = products[-3:]
+    
     role = "user"
+    last_3_reversed_products = list(reversed(products[-3:]))  
+    return render_template("index.html", products=last_3_reversed_products, role=role, current_date=current_date)
 
-    return render_template("index.html", products=products, role=role, last_three_items=last_three_items)
+
 
 @app.route("/programs")
 def programs():

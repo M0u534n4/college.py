@@ -21,9 +21,8 @@
       border-radius: 25px;
 
       .post-img-div {
-        width: 100%;
-        height: 264px;
         img {
+          width: 100%;
           border-top-left-radius: 25px;
           border-top-right-radius: 25px;
           object-fit: cover;
@@ -34,6 +33,10 @@
         .date {
           font-size: 13px;
           color: $base-color1;
+        }
+        .title-p {
+          font-size: 16px;
+          color: $card-txt;
         }
       }
     }
