@@ -83,29 +83,41 @@
       </div>
     </section>-->
 
-<section class="news" id="news">
+<section class="programs" id="programs">
   <div class="container">
-    {% for product in products %}
-    <div class="post-div smth">
-      <div class="post-img-div">
-        <img
-          src="/static/{{ product[ 'img' ] }}"
-          alt=""
-          style="width: 354px; height: 264px"
-        />
-      </div>
+    <h1>პროგრამები</h1>
+    <div class="card-wrapper">
+      {% for product in products %}
+      <div class="card" style="max-width: 355px">
+        <div class="absolute-div">
+          <a href="delete_post/{{ product.id }}" class="delete"
+            ><i class="fa-solid fa-square-xmark" style="color: #395dbf"></i
+          ></a>
+          <a href="edit_post/{{ product.id }}" class="edit"
+            ><i class="fa-solid fa-pen-to-square" style="color: #395dbf"></i
+          ></a>
+          <img
+            src="/static/{{ product.img }}"
+            class="card-img-top"
+            alt="..."
+            style="max-width: 354px; height: 264px"
+          />
+        </div>
 
-      <div class="discr-div">
-        <p class="date">{{ current_date }}</p>
-        <p class="title-p">
-          {{ product["title"] }}<a href="test/{{ product['id'] }}">..მეტი</a>
-        </p>
+        <div class="card-body">
+          <div class="card-txt">
+            <p class="card-lvl">{{ product.price }}</p>
+            <p class="card-title">{{ product.name }}</p>
+          </div>
+          <a href="view_program/{{ product.id }}" class="btn btn-primary"
+            >მეტი</a
+          >
+        </div>
       </div>
     </div>
     {% endfor %}
   </div>
 </section>
-
 <!-- only admin should see this -->
 
 {% if role == "admin" %}
@@ -142,72 +154,6 @@
             <h5 class="card-title">ინფორმაციული ტექნოლოგია</h5>
           </div>
           <a href="pages/programs/it.html" class="btn btn-primary">მეტი</a>
-        </div>
-      </div>
-      <div class="card" style="max-width: 355px">
-        <img
-          src="../static/images/farmacy.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <div class="card-txt">
-            <p class="card-lvl">მეხუთე დონე</p>
-            <h5 class="card-title">ფამაცია</h5>
-          </div>
-          <a href="#" class="btn btn-primary">მეტი</a>
-        </div>
-      </div>
-      <div class="card" style="max-width: 355px">
-        <img
-          src="../static/images/veterinary.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <div class="card-txt">
-            <p class="card-lvl">მეხუთე დონე</p>
-            <h5 class="card-title">ვეტერინარია</h5>
-          </div>
-          <a href="#" class="btn btn-primary">მეტი</a>
-        </div>
-      </div>
-      <div class="card" style="max-width: 355px">
-        <img
-          src="../static/images/office business.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <div class="card-txt">
-            <p class="card-lvl">მეოთხე დონე</p>
-            <h5 class="card-title">საოფისე საქმე</h5>
-          </div>
-          <a href="#" class="btn btn-primary">მეტი</a>
-        </div>
-      </div>
-      <div class="card" style="max-width: 355px">
-        <img
-          src="../static/images/kindergarden.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <div class="card-txt">
-            <p class="card-lvl">მეხუთე დონე</p>
-            <h5 class="card-title">აღმზრდელი</h5>
-          </div>
-          <a href="#" class="btn btn-primary">მეტი</a>
-        </div>
-      </div>
-      <div class="card" style="max-width: 355px">
-        <img src="static/images/bugalteri.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <div class="card-txt">
-            <p class="card-lvl">მეხუთე დონე</p>
-            <h5 class="card-title">ბუღალტერია</h5>
-          </div>
-          <a href="#" class="btn btn-primary">მეტი</a>
         </div>
       </div>
     </div>

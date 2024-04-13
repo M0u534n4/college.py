@@ -32,6 +32,23 @@
         border: none;
         background-color: $card-color;
         border-radius: 25px;
+        .absolute-div {
+          width: 100%;
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+          .delete {
+            position: absolute;
+            top: 5%;
+            left: 90%;
+          }
+          .edit {
+            position: absolute;
+            top: 5%;
+            right: 90%;
+          }
+        }
 
         img {
           border-radius: 25px;

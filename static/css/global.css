@@ -293,6 +293,23 @@ header .container .dropdown .dropdown .dropdown-menu a {
   background-color: #f1f0fe;
   border-radius: 25px;
 }
+.programs .container .card-wrapper .card .absolute-div {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.programs .container .card-wrapper .card .absolute-div .delete {
+  position: absolute;
+  top: 5%;
+  left: 90%;
+}
+.programs .container .card-wrapper .card .absolute-div .edit {
+  position: absolute;
+  top: 5%;
+  right: 90%;
+}
 .programs .container .card-wrapper .card img {
   border-radius: 25px;
   overflow: hidden;
@@ -387,12 +404,34 @@ header .container .dropdown .dropdown .dropdown-menu a {
   padding: 15px;
 }
 .news .container .post-div .discr-div .date {
-  font-size: 13px;
+  font-size: 15px;
   color: #395dbf;
 }
 .news .container .post-div .discr-div .title-p {
-  font-size: 16px;
-  color: #4a4a4a;
+  font-size: 22px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+@media (max-width: 356px) {
+  .news .container .post-div .discr-div .title-p {
+    font-size: 18px;
+  }
+}
+.news .container .post-div .discr-div .title-p .btn {
+  background-color: white;
+  color: #395dbf;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 25px;
+  border-radius: 20px;
+  transition: all 0.3s;
+  border: none;
+}
+.news .container .post-div .discr-div .title-p .btn:hover {
+  background-color: #395dbf;
+  color: white;
 }
 
 .contact {

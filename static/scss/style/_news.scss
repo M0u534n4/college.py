@@ -31,12 +31,32 @@
       .discr-div {
         padding: 15px;
         .date {
-          font-size: 13px;
+          font-size: 15px;
           color: $base-color1;
         }
         .title-p {
-          font-size: 16px;
-          color: $card-txt;
+          font-size: 22px;
+          font-weight: 600;
+          transition: all 0.3s;
+          @media (max-width: 356px) {
+            font-size: 18px;
+          }
+          .btn {
+            background-color: $base-color2;
+            color: $base-color1;
+            font-size: 14px;
+            font-weight: 600;
+            height: 40px;
+            line-height: 40px;
+            padding: 0px 25px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            border: none;
+            &:hover {
+              background-color: $base-color1;
+              color: $base-color2;
+            }
+          }
         }
       }
     }
