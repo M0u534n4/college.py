@@ -1,7 +1,7 @@
-from flask import render_template, redirect
-from forms import AddProductForm
+from flask import render_template, redirect, send_from_directory
+from forms import AddProductForm, AddPostForm, FileUpload
 from os import path
-from models import Post
+from models import Post, AddPost, File
 from ext import app, db
 
 
@@ -14,11 +14,13 @@ from ext import app, db
 @app.route("/")
 def home():
     products = Post.query.all()
+    posts = AddPost.query.all()
+    files = File.query.all()
     
     
     role = "user"
-    last_3_reversed_products = list(reversed(products[-3:]))  
-    return render_template("index.html", products=last_3_reversed_products, role=role)
+    last_3_reversed_posts = list(reversed(posts[-3:]))  
+    return render_template("index.html", products=products, role=role, posts=posts, files=files)
 
 
 
@@ -26,7 +28,7 @@ def home():
 def programs():
     return render_template("pages/programs.html")
 
-@app.route("/add_post", methods=["POST", "GET"])
+@app.route("/add_program", methods=["POST", "GET"])
 def add_product():
     form = AddProductForm()
     if form.validate_on_submit():
@@ -43,31 +45,32 @@ def add_product():
     return render_template("pages/add_product.html", form=form)
 
 @app.route("/edit_post/<int:index>", methods=["GET", "POST"])
-def edit_product(index):
-    product = Post.query.get(index)
-    form = AddProductForm(price=product.price, name=product.name, img=product.img)
+def edit_post(index):
+    post = AddPost.query.get(index)
+    form = AddPostForm(price=post.price, name=post.name, img=post.img)
 
     if form.validate_on_submit():
-        product.name = form.name.data
-        product.price = form.price.data
-        product.img=form.img.data.filename
+        post.name = form.name.data
+        post.price = form.price.data
+        post.img=form.img.data.filename
 
         file_dir = path.join(app.root_path, "static", form.img.data.filename)
         form.img.data.save(file_dir)
 
         db.session.commit()
 
-    return render_template("pages/add_product.html", form=form)
+        return redirect("/")
+
+    return render_template("pages/add_post.html", form=form)
 
 
 @app.route("/delete_post/<int:index>")
-def delete_product(index):
-    product = Post.query.get(index)
+def delete_post(index):
+    post = AddPost.query.get(index)
 
-    db.session.delete(product)
+    db.session.delete(post)
     db.session.commit()
     return redirect("/")
-
 
 
 
@@ -78,4 +81,60 @@ def test(index):
 
 @app.route("/news")
 def about():
-    return render_template("pages/news.html")
+    posts = AddPost.query.all()
+    form = AddPostForm()
+    if form.validate_on_submit():
+        new_post = AddPost(name=form.name.data, price=form.price.data, img=form.img.data.filename)
+
+        db.session.add(new_post)
+        db.session.commit()
+
+        file_dir = path.join(app.root_path, "static", form.img.data.filename)
+        form.img.data.save(file_dir)
+        
+        return redirect("/")
+    return render_template("pages/news.html", posts=posts, form=form)
+
+@app.route("/add_post", methods=["GET", "POST"])
+def add_post():
+    form = AddPostForm()
+    if form.validate_on_submit():
+        new_post = AddPost(name=form.name.data, price=form.price.data, img=form.img.data.filename)
+
+        db.session.add(new_post)
+        db.session.commit()
+
+        file_dir = path.join(app.root_path, "static", form.img.data.filename)
+        form.img.data.save(file_dir)
+        
+        return redirect("/")
+
+    return render_template("pages/add_post.html", form=form)
+
+
+
+@app.route("/legal_documents", methods=["GET", "POST"])
+def legal_documents():
+    form = FileUpload()
+    if form.validate_on_submit():
+        new_file = File(name=form.name.data, file=form.file.data.filename)
+        db.session.add(new_file)
+        db.session.commit()
+
+        file_dir = path.join(app.root_path, "static/files", form.file.data.filename)
+        form.file.data.save(file_dir)
+
+    files = File.query.all()
+    return render_template("pages/legal_documents.html", form=form, files=files)
+
+@app.route("/delete_file/<int:index>")
+def delete_file(index):
+    file = File.query.get(index)
+    db.session.delete(file)
+    db.session.commit()
+    return redirect("/legal_documents")
+
+@app.route("/view_file/<int:index>")
+def view_file(index):
+    file = File.query.get(index)
+    return send_from_directory(path.join(app.root_path, "static/files"), file.file)
