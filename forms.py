@@ -13,7 +13,6 @@ class AddProductForm(FlaskForm):
 
 class AddPostForm(FlaskForm):
     name = StringField("discription", validators=[InputRequired()])
-    price = StringField("თარიღი", validators=[InputRequired()])
     img = FileField("სურათის სახელი", validators=[FileRequired(), FileAllowed(["jpg", "jpeg", "png", "svg"])])
     submit = SubmitField("დამატება")
 

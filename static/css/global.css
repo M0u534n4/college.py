@@ -377,9 +377,54 @@ header .container .dropdown .dropdown .dropdown-menu a {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 60px;
+  /*.post-div {
+    max-width: 356px;
+    border: 1px solid #d6d5e0;
+    background-color: $card-color;
+    border-radius: 25px;
+
+    .post-img-div {
+      img {
+        width: 100%;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        object-fit: cover;
+      }
+    }
+    .discr-div {
+      padding: 15px;
+      .date {
+        font-size: 15px;
+        color: $base-color1;
+      }
+      .title-p {
+        font-size: 22px;
+        font-weight: 600;
+        transition: all 0.3s;
+        @media (max-width: 356px) {
+          font-size: 18px;
+        }
+        .btn {
+          background-color: $base-color2;
+          color: $base-color1;
+          font-size: 14px;
+          font-weight: 600;
+          height: 40px;
+          line-height: 40px;
+          padding: 0px 25px;
+          border-radius: 20px;
+          transition: all 0.3s;
+          border: none;
+          &:hover {
+            background-color: $base-color1;
+            color: $base-color2;
+          }
+        }
+      }
+    }
+  }*/
 }
 @media (max-width: 754px) {
   .news .container {
@@ -387,37 +432,98 @@ header .container .dropdown .dropdown .dropdown-menu a {
     align-items: center;
   }
 }
-.news .container .post-div {
-  max-width: 356px;
-  border: 1px solid #d6d5e0;
+.news .container h1 {
+  text-align: center;
+  font-size: 45px;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+@media (max-width: 356px) {
+  .news .container h1 {
+    font-size: 25px;
+  }
+}
+.news .container .card-wrapper {
+  display: flex;
+  justify-content: space-between; /* Distribute items along the main axis with equal space between them */
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+@media (max-width: 754px) {
+  .news .container .card-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.news .container .card-wrapper .card {
+  border: none;
   background-color: #f1f0fe;
   border-radius: 25px;
 }
-.news .container .post-div .post-img-div img {
+.news .container .card-wrapper .card .absolute-div {
   width: 100%;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.news .container .card-wrapper .card .absolute-div .delete {
+  position: absolute;
+  top: 5%;
+  left: 90%;
+}
+.news .container .card-wrapper .card .absolute-div .edit {
+  position: absolute;
+  top: 5%;
+  right: 90%;
+}
+.news .container .card-wrapper .card img {
+  width: 354px;
+  height: 264px;
+  border-radius: 25px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.news .container .post-div .discr-div {
-  padding: 15px;
+@media (max-width: 355px) {
+  .news .container .card-wrapper .card img {
+    max-width: 255px;
+  }
 }
-.news .container .post-div .discr-div .date {
+.news .container .card-wrapper .card .card-body {
+  padding: 20px 30px 20px 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 356px) {
+  .news .container .card-wrapper .card .card-body {
+    max-width: 255px;
+    padding: 10px 20px 15px 20px;
+  }
+}
+.news .container .card-wrapper .card .card-body .card-txt {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 10px;
+}
+.news .container .card-wrapper .card .card-body .card-txt .card-lvl {
   font-size: 15px;
   color: #395dbf;
 }
-.news .container .post-div .discr-div .title-p {
-  font-size: 22px;
+.news .container .card-wrapper .card .card-body .card-txt .card-title {
+  font-size: 15px;
   font-weight: 600;
   transition: all 0.3s;
 }
 @media (max-width: 356px) {
-  .news .container .post-div .discr-div .title-p {
+  .news .container .card-wrapper .card .card-body .card-txt .card-title {
     font-size: 18px;
   }
 }
-.news .container .post-div .discr-div .title-p .btn {
+.news .container .card-wrapper .card .card-body .btn {
   background-color: white;
   color: #395dbf;
   font-size: 14px;
@@ -429,7 +535,7 @@ header .container .dropdown .dropdown .dropdown-menu a {
   transition: all 0.3s;
   border: none;
 }
-.news .container .post-div .discr-div .title-p .btn:hover {
+.news .container .card-wrapper .card .card-body .btn:hover {
   background-color: #395dbf;
   color: white;
 }
@@ -608,37 +714,47 @@ footer {
 
 .posts-section {
   padding-top: 60px;
-  padding-bottom: 1160px;
+  padding-bottom: 60px;
 }
 .posts-section .container {
   max-width: 500px;
   margin: 0 auto;
-  background-color: #f1f0fe;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.posts-section .container .post {
   padding: 20px;
-  border: 1px solid #d6d5e0;
-}
-.posts-section .container .post-div .discr-div {
-  margin-bottom: 10px;
-}
-.posts-section .container .post-div .discr-div p {
-  font-size: 13px;
-}
-.posts-section .container .post-div .post-img-div img {
-  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  background-color: #f1f0fe;
   border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
-.posts-section .container .reaction-div button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+.posts-section .container .post .settings-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.posts-section .container .reaction-div button i {
-  color: white;
-  font-size: 20px;
+.posts-section .container .post .description {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.posts-section .container .post .description h2 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #395dbf;
+}
+.posts-section .container .post .description p {
+  font-size: 0.9em;
+  color: #555;
+}
+.posts-section .container .post img {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
 }
 
 .programs-s {

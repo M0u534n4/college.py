@@ -83,12 +83,12 @@
       </div>
     </section>-->
 
-<section class="programs" id="news">
+<section class="news" id="news">
   <div class="container">
     <h1>სიახლეები</h1>
     <div class="card-wrapper">
       {% for post in posts %}
-      <div class="card" style="max-width: 355px">
+      <div class="card" style="max-width: 355px; max-height: 355px">
         <div class="absolute-div">
           <a href="delete_post/{{ post.id }}" class="delete"
             ><i class="fa-solid fa-square-xmark" style="color: #395dbf"></i
@@ -96,22 +96,20 @@
           <a href="edit_post/{{ post.id }}" class="edit"
             ><i class="fa-solid fa-pen-to-square" style="color: #395dbf"></i
           ></a>
-          <img
-            src="/static/{{ post.img }}"
-            class="card-img-top"
-            alt="..."
-            style="max-width: 354px; height: 264px"
-          />
+          <img src="/static/{{ post.img }}" class="card-img-top" alt="..." />
         </div>
 
         <div class="card-body">
           <div class="card-txt">
-            <p class="card-lvl">{{ post.price }}</p>
-            <p class="card-title" style="font-size: 18px; font-weight: 400">
-              {{ post.name }}
-            </p>
+            <p class="card-lvl">{{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+
+            <div class="discrdiv">
+              <p class="card-title" style="font-size: 15px; font-weight: 400">
+                {{ post.name.split()[:3]|join(' ') }}...
+              </p>
+            </div>
           </div>
-          <a href="view_program/{{ post.id }}" class="btn btn-primary">მეტი</a>
+          <a href="news" class="btn btn-primary">მეტი</a>
         </div>
       </div>
       {% endfor %}
@@ -123,11 +121,11 @@
   <div class="container">
     <h1>პროგრამები</h1>
     <div class="card-wrapper">
-      {% for product in products %}
+      {% for program in programs %}
       <div class="card" style="max-width: 355px">
         <div class="absolute-div">
           <img
-            src="/static/{{ product.img }}"
+            src="/static/{{ program.img }}"
             class="card-img-top"
             alt="..."
             style="max-width: 354px; height: 264px"
@@ -136,10 +134,10 @@
 
         <div class="card-body">
           <div class="card-txt">
-            <p class="card-lvl">{{ product.price }}</p>
-            <p class="card-title">{{ product.name }}</p>
+            <p class="card-lvl">{{ program.price }}</p>
+            <p class="card-title">{{ program.name }}</p>
           </div>
-          <a href="view_program/{{ product.id }}" class="btn btn-primary"
+          <a href="view_program/{{ program.id }}" class="btn btn-primary"
             >მეტი</a
           >
         </div>
@@ -149,33 +147,6 @@
   </div>
 </section>
 
-<section class="programs">
-  <div class="container">
-    <div class="cardwrapper">
-      {% for file in files %}
-      <div class="card" style="max-width: 355px">
-        <div class="absolute-div">
-          <a href="/delete_file/{{ file.id }}" class="delete">
-            <i class="fa-solid fa-square-xmark" style="color: #395dbf"></i>
-          </a>
-        </div>
-
-        <div class="card-body">
-          <div class="card-txt">
-            <p class="card-lvl">{{ file.name }}</p>
-          </div>
-          <a
-            href="/view_file/{{ file.id }}"
-            class="btn btn-primary"
-            target="_blank"
-            >View</a
-          >
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
 <!-- only admin should see this -->
 
 {% if role == "admin" %}

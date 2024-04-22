@@ -3,6 +3,7 @@ from forms import AddProductForm, AddPostForm, FileUpload
 from os import path
 from models import Post, AddPost, File
 from ext import app, db
+from datetime import datetime
 
 
 #products = [
@@ -10,26 +11,24 @@ from ext import app, db
   #      {"title": "ps5", "price": "1200", "img": "images/veterinary.jpg", "id": 1},
    #     {"title": "ps5", "price": "1200", "img": "images/it.jpg", "id": 2}
     #]
+    
 
 @app.route("/")
 def home():
-    products = Post.query.all()
+    programs = Post.query.all()
     posts = AddPost.query.all()
     files = File.query.all()
     
     
     role = "user"
     last_3_reversed_posts = list(reversed(posts[-3:]))  
-    return render_template("index.html", products=products, role=role, posts=posts, files=files)
+    return render_template("index.html", programs=programs, role=role, posts=last_3_reversed_posts, files=files)
 
 
 
 @app.route("/programs")
 def programs():
-    return render_template("pages/programs.html")
-
-@app.route("/add_program", methods=["POST", "GET"])
-def add_product():
+    programs = Post.query.all()
     form = AddProductForm()
     if form.validate_on_submit():
         new_product = Post(name=form.name.data, price=form.price.data, img=form.img.data.filename)
@@ -41,8 +40,8 @@ def add_product():
         form.img.data.save(file_dir)
         
         return redirect("/")
-    print(form.errors)
-    return render_template("pages/add_product.html", form=form)
+    return render_template("pages/programs.html", programs=programs, form=form)
+
 
 @app.route("/edit_post/<int:index>", methods=["GET", "POST"])
 def edit_post(index):
@@ -75,16 +74,23 @@ def delete_post(index):
 
 
 @app.route("/view_program/<int:index>")
-def test(index):
+def view_program(index):
     product = Post.query.get(index)
-    return render_template("test.html", product=product)
+    return render_template("view_program.html", product=product)
 
-@app.route("/news")
+
+@app.route("/view_post/<int:index>")
+def view_post(index):
+    post = AddPost.query.get(index)
+    return render_template("view_post.html", post=post)
+
+@app.route("/news", methods=["GET", "POST"])
 def about():
     posts = AddPost.query.all()
+    
     form = AddPostForm()
     if form.validate_on_submit():
-        new_post = AddPost(name=form.name.data, price=form.price.data, img=form.img.data.filename)
+        new_post = AddPost(name=form.name.data, img=form.img.data.filename, date_posted=datetime.now())
 
         db.session.add(new_post)
         db.session.commit()
@@ -95,21 +101,6 @@ def about():
         return redirect("/")
     return render_template("pages/news.html", posts=posts, form=form)
 
-@app.route("/add_post", methods=["GET", "POST"])
-def add_post():
-    form = AddPostForm()
-    if form.validate_on_submit():
-        new_post = AddPost(name=form.name.data, price=form.price.data, img=form.img.data.filename)
-
-        db.session.add(new_post)
-        db.session.commit()
-
-        file_dir = path.join(app.root_path, "static", form.img.data.filename)
-        form.img.data.save(file_dir)
-        
-        return redirect("/")
-
-    return render_template("pages/add_post.html", form=form)
 
 
 

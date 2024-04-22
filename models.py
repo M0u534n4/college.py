@@ -1,10 +1,13 @@
 from ext import db, app
+from datetime import datetime
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     price = db.Column(db.String)
     img = db.Column(db.String)
+    
 
 
     def validate(self):
@@ -22,8 +25,9 @@ class Post(db.Model):
 class AddPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    price = db.Column(db.String)
+    
     img = db.Column(db.String)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
 class File(db.Model):

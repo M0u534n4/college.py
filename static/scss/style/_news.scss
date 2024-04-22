@@ -6,15 +6,23 @@
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    gap: 60px;
 
     @media (max-width: 754px) {
       flex-direction: column;
       align-items: center;
     }
-    .post-div {
+    h1 {
+      text-align: center;
+      font-size: 45px;
+      font-weight: 600;
+      color: $card-txt;
+      @media (max-width: 356px) {
+        font-size: 25px;
+      }
+    }
+    /*.post-div {
       max-width: 356px;
       border: 1px solid #d6d5e0;
       background-color: $card-color;
@@ -40,6 +48,97 @@
           transition: all 0.3s;
           @media (max-width: 356px) {
             font-size: 18px;
+          }
+          .btn {
+            background-color: $base-color2;
+            color: $base-color1;
+            font-size: 14px;
+            font-weight: 600;
+            height: 40px;
+            line-height: 40px;
+            padding: 0px 25px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            border: none;
+            &:hover {
+              background-color: $base-color1;
+              color: $base-color2;
+            }
+          }
+        }
+      }
+    }*/
+    .card-wrapper {
+      display: flex;
+      justify-content: space-between; /* Distribute items along the main axis with equal space between them */
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      @media (max-width: 754px) {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        border: none;
+        background-color: $card-color;
+        border-radius: 25px;
+        .absolute-div {
+          width: 100%;
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+
+          .delete {
+            position: absolute;
+            top: 5%;
+            left: 90%;
+          }
+          .edit {
+            position: absolute;
+            top: 5%;
+            right: 90%;
+          }
+        }
+
+        img {
+          width: 354px;
+          height: 264px;
+          border-radius: 25px;
+
+          object-fit: cover;
+          @media (max-width: 355px) {
+            max-width: 255px;
+          }
+        }
+        .card-body {
+          padding: 20px 30px 20px 30px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          @media (max-width: 356px) {
+            max-width: 255px;
+            padding: 10px 20px 15px 20px;
+          }
+          .card-txt {
+            display: flex;
+            flex-direction: column;
+            align-items: space-between;
+            gap: 10px;
+            .card-lvl {
+              font-size: 15px;
+              color: $base-color1;
+            }
+            .card-title {
+              font-size: 15px;
+              font-weight: 600;
+              transition: all 0.3s;
+              @media (max-width: 356px) {
+                font-size: 18px;
+              }
+            }
           }
           .btn {
             background-color: $base-color2;

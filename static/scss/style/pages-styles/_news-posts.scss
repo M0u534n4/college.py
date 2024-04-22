@@ -1,40 +1,47 @@
 .posts-section {
   padding-top: 60px;
-  padding-bottom: 1160px;
+  padding-bottom: 60px;
+
   .container {
     max-width: 500px;
     margin: 0 auto;
-    background-color: $card-color;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-    border-radius: 5px;
-    padding: 20px;
-    border: 1px solid #d6d5e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .post {
+      padding: 20px;
+      max-width: 500px;
+      background-color: #fff;
+      border-radius: 8px;
+      background-color: $card-color;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      .settings-div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
 
-    .post-div {
-      .discr-div {
+      .description {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        h2 {
+          font-size: 14px;
+          margin-bottom: 5px;
+          color: $base-color1;
+        }
+
         p {
-          font-size: 13px;
-        }
-        margin-bottom: 10px;
-      }
-      .post-img-div {
-        img {
-          width: 100%;
-          border-radius: 5px;
+          font-size: 0.9em;
+          color: #555;
         }
       }
-    }
-    .reaction-div {
-      button {
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        i {
-          color: $base_color2;
-          font-size: 20px;
-        }
+
+      img {
+        width: 100%;
+        display: block;
+        border-radius: 5px;
       }
     }
   }
